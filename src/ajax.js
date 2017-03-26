@@ -1,5 +1,5 @@
-export default {
-    get: function (url, sucfunc) {
+export default class Ajax {
+    get(url, sucfunc) {
         var data;
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {

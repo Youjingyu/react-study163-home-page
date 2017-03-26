@@ -266,6 +266,7 @@ h4,h5{
     color: white;
 }
 .course_list{
+    list-style: none;
     width: 980px;
 }
 .course_list_item{
