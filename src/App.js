@@ -1,21 +1,26 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+//import { createStore } from 'redux'
+import Tab from './components/CourseListTab'
 
-class App extends Component {
-  render() {
+class App extends Component{
+  render(){
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+        <Tab activeTab={this.props.activeTab} onTabClick={this.props.onTabChange}/>
+    )
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    activeTab: state.activeTab
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onTabChange: () => dispatch({type: 'onTabChange'})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,11 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-//import { createStore } from 'redux'
-import Tab from './components/CourseListTab'
-
-let store = createStore(todoApp);
+import reducer from './reducer'
+import App from './App'
 
 let rootElement = document.getElementById('course_list');
 //render(
@@ -15,6 +12,8 @@ let rootElement = document.getElementById('course_list');
 //    rootElement
 //)
 render(
-    <Tab onTabClick={()=>console.log(1)}/>,
+    <Provider store={reducer}>
+        <App />
+    </Provider>,
     rootElement
 )
