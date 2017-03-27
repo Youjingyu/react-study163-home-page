@@ -10,7 +10,7 @@ export default class ListItem extends Component {
                     <span>{itemData.name}</span>
                     <span>{itemData.provider}</span>
                     <span>{itemData.learnerCount}</span>
-                    <span>{itemData.price == 0 ? '√‚∑—' : '?' + itemData.price}</span>
+                    <span>{itemData.price == 0 ? 'ÂÖçË¥π' : '?' + itemData.price}</span>
                 </a>
                 <div className={'course_detail' + this.props.isOnHover ? '' : ' hidden'}>
                     <div className='detail'>

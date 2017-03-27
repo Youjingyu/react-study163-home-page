@@ -1,4 +1,5 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import Ajax from 'ajax'
 
 function reducer(state = {activeTab: 0, page: 0, courseList: []}, action = {}) {
     switch (action.type) {
@@ -8,12 +9,25 @@ function reducer(state = {activeTab: 0, page: 0, courseList: []}, action = {}) {
         case 'getCourseList':
             state.courseList = action.listData;
             return Object.assign({}, state);
-        case'initCourseList':
+        case'changePage':
             state.page = action.page;
             return Object.assign({}, state);
         default:
             return state
     }
 }
+function thunkMiddleware(_ref) {
+    var dispatch = _ref.dispatch;
+    var getState = _ref.getState;
 
-export default createStore(reducer);
+    return function (next) {
+        return function (action) {
+            return typeof action === 'function' ? action(dispatch, getState) : next(action);
+        };
+    };
+}
+
+//通过Redux.applyMiddleware创建store
+const createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore);
+
+export default createStoreWithMiddleware(reducer);
