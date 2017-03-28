@@ -9,9 +9,7 @@ function reducer(state, action) {
         case 'getCourseList':
             state.courseList = action.listData;
             state.curList = state.courseList.slice(state.page*20, 21);
-            let result = Object.assign({}, state);
-            console.log(result);
-            return result;
+            return Object.assign({}, state);
         case'changePage':
             state.page = action.page;
             return Object.assign({}, state);
