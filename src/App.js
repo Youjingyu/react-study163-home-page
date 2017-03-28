@@ -1,20 +1,23 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Ajax from './ajax'
 //import { createStore } from 'redux'
 import Tab from './components/CourseListTab'
 import ListItem from './components/CourseListItem'
 
 class App extends Component{
-  render(){
-    const {dispatch, courseList, page, getCourseList} = this.props;
-    const curList = courseList.splice(page*20, 20);
+  componentDidMount(){
+    const {getCourseList} = this.props;
     getCourseList();
+  }
+  render(){
+    const {curList} = this.props;
     return (
         <div>
           <Tab activeTab={this.props.activeTab} onTabClick={this.props.onTabChange}/>
           <ul className="course_list">
             {curList.map((item, index) => {
-              <ListItem itemData={item} key={index}/>
+              return <ListItem itemData={item} key={index} isOnHover={false}/>
             })}
           </ul>
         </div>
@@ -25,15 +28,16 @@ class App extends Component{
 function mapStateToProps(state) {
   return {
     activeTab: state.activeTab,
-    courseList: state.courseList,
-    page: state.page
+    //courseList: state.courseList,
+    //page: state.page,
+    curList: state.curList
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     onTabChange: () => dispatch({type: 'onTabChange'}),
-    getCourseList: () => (new Ajax()).get('../public/json/courses.json', function(data){
+    getCourseList: () => (new Ajax()).get('./json/courses.json', function(data){
       dispatch({
         type: 'getCourseList',
         listData: data.list
@@ -42,5 +46,6 @@ function mapDispatchToProps(dispatch) {
     changePage: (page) => dispatch({type: 'changePage', page: page})
   }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

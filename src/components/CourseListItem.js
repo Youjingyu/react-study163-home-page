@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 export default class ListItem extends Component {
+
     render() {
         const itemData = this.props.itemData;
         return (
@@ -12,12 +13,12 @@ export default class ListItem extends Component {
                     <span>{itemData.learnerCount}</span>
                     <span>{itemData.price == 0 ? '免费' : '?' + itemData.price}</span>
                 </a>
-                <div className={'course_detail' + this.props.isOnHover ? '' : ' hidden'}>
+                <div className={'course_detail' + (this.props.isOnHover ? '' : ' hidden')}>
                     <div className='detail'>
                         <div className="detail_img">
                             <img className="course_img" src={itemData.middlePhotoUrl} />
                         </div>
-                        <div class="detail_item">
+                        <div className="detail_item">
                             <h4>{itemData.name}</h4>
                             <span>{itemData.learnerCount}</span>
                             <span>{itemData.provider}</span>

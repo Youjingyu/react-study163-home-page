@@ -10,6 +10,7 @@ a{
     cursor: pointer;
     text-decoration: none;
 }
+a:active{color: inherit}
 img{
     border: none;
 }
@@ -325,15 +326,19 @@ h4,h5{
     width: 10px;
     height: 10px;
 }
-.course_list_item>a div:nth-child(2){
+.course_list_item span {
+    display: block;
+    padding-left: 5px;
+}
+.course_list_item>a span:nth-child(2){
     white-space: nowrap;
     overflow: hidden;
     text-overflow:ellipsis;
 }
-.course_list_item>a div:nth-child(3){
+.course_list_item>a span:nth-child(3){
     color: rgb(153, 153, 153);
 }
-.course_list_item>a div:nth-child(5){
+.course_list_item>a span:nth-child(5){
     color: #ff3f00;
 }
 .page{

@@ -6,7 +6,7 @@ export default class Ajax {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 data = JSON.parse(xmlhttp.responseText);
                 sucfunc(data);
-                console.log('url success');
+                console.log('get ' + url + ' success');
             }
         }
         xmlhttp.open("GET", url, true);
